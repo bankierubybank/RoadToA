@@ -1,0 +1,90 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+
+
+public class GameScreen implements Screen{
+	
+	final MyGame game;
+	
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer renderer;
+
+	int mapX, mapY;
+
+	private Character player;
+	
+	//Constructor
+	public GameScreen(final MyGame game){
+		this.game = game;
+		
+		map = new TmxMapLoader().load("map.tmx");
+		renderer = new OrthogonalTiledMapRenderer(map);
+		
+		player = new Character();
+	}
+
+	@Override
+	public void render (float delta) {
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		renderer.setView(player.getCamera());
+		renderer.render();
+		player.render();
+		
+		
+
+		if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+			if (mapX > 0) {
+				player.move(-1, 0);
+				mapX --;
+			}
+		}
+		if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			if (mapX < 320 / 2) {
+				player.move(1, 0);
+				mapX ++;
+			}
+		}
+		if(Gdx.input.isKeyPressed(Keys.UP)) {
+			player.move(0, 1);
+		}
+		if(Gdx.input.isKeyPressed(Keys.DOWN)){
+			player.move(0, -1);
+		}
+	}
+	
+	@Override
+	public void dispose () {
+		map.dispose();
+		renderer.dispose();
+		player.dispose();
+	}
+
+	@Override
+	public void show() {
+	}
+
+	@Override
+	public void resize(int width, int height) {
+	}
+
+	@Override
+	public void pause() {
+
+	}
+
+	@Override
+	public void resume() {
+	}
+
+	@Override
+	public void hide() {
+	}
+}

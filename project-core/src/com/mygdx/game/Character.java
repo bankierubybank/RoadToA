@@ -1,27 +1,35 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Character {
 	
-	protected Texture texture;
-	protected Rectangle player;
+	private Texture texture;
+	private Rectangle player;
 	
-	SpriteBatch batch;
+	private OrthographicCamera playerCamera;
+
+	private SpriteBatch batch;
+	
+	float rangeX, rangeY;
 	
 	//Constructor
 	public Character(){
-		texture = new Texture(Gdx.files.internal("player.png"));
+		texture = new Texture(Gdx.files.internal("player32.png"));
 		player = new Rectangle();
 		player.x = 0;
 		player.y = 0;
-		player.width = 16;
-		player.height = 16;
+		player.width = 32;
+		player.height = 32;
 		
 		batch = new SpriteBatch();
+		playerCamera = new OrthographicCamera();
+		playerCamera.setToOrtho(false, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+
 	}
 	
 	public float getX(){
@@ -35,17 +43,18 @@ public class Character {
 	public void move(float x, float y){
 		player.x += x;
 		player.y += y;
+		playerCamera.translate(x, y);
 		if (player.x < 0) {
 			player.x = 0;
 		}
-		if (player.x > 320 - 16) {
-			player.x = 320 - 16;
+		if (player.x > 320 - 32) {
+			player.x = 320 - 32;
 		}
 		if (player.y < 0) {
 			player.y = 0;
 		}
-		if (player.y > 320 - 16) {
-			player.y = 320 - 16;
+		if (player.y > 320 - 32) {
+			player.y = 320 - 32;
 		}
 		
 	}
@@ -59,21 +68,19 @@ public class Character {
 	}
 	
 	public void render(){
-		
-		
 		batch.begin();
 		batch.draw(texture, player.x, player.y);
 		batch.end();
+		
+		playerCamera.update();
 	}
 	
 	public void dispose(){
 		texture.dispose();
 		batch.dispose();
 	}
-
 	
-	
-
-
-
+	public OrthographicCamera getCamera(){
+		return playerCamera;
+	}
 }

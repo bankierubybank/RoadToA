@@ -13,18 +13,17 @@ public class MainMenuScreen implements Screen {
 	
 	final MyGame game;
 	
-	OrthographicCamera camera;
+	private OrthographicCamera camera;
 	
-	Stage stage;
-	Skin skin;
-	
-	
+	private Stage stage;
+	private Skin skin;
+
 	//Constructor
 	public MainMenuScreen(final MyGame game){
 		this.game = game;
 		
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 400, 400);
+		camera.setToOrtho(false, 320, 320);
 		
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 		TextButton buttonStart = new TextButton("START", skin);
@@ -38,75 +37,43 @@ public class MainMenuScreen implements Screen {
 			}
 		});
 		
-		
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 		stage.addActor(buttonStart);
 	}
 	
-	
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
-		
-		
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
 	}
-
-	
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }

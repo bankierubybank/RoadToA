@@ -1,0 +1,89 @@
+package com.mygdx.game;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+
+public class Character {
+	
+	private Texture texture;
+	private Rectangle player;
+	
+	private OrthographicCamera playerCamera;
+
+	private SpriteBatch batch;
+	
+	float rangeX, rangeY;
+	
+	//Constructor
+	public Character(){
+		texture = new Texture(Gdx.files.internal("player32.png"));
+		player = new Rectangle();
+		player.x = 0;
+		player.y = 0;
+		player.width = 32;
+		player.height = 32;
+		
+		batch = new SpriteBatch();
+		playerCamera = new OrthographicCamera();
+		playerCamera.setToOrtho(false, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		
+		rangeX = player.x;
+		rangeY = player.y;
+	}
+	
+	public float getX(){
+		return player.x;
+	}
+	
+	public float getY(){
+		return player.y;
+	}
+	
+	public void move(float x, float y){
+		player.x += x;
+		player.y += y;
+		rangeX = abs(rangeX - player.x);
+		playerCamera.translate(x, y);
+		if (player.x < 0) {
+			player.x += rangeX;
+		}
+		if (player.x > 320 - 32) {
+			player.x = 320 - 32;
+		}
+		if (player.y < 0) {
+			player.y = 0;
+		}
+		if (player.y > 320 - 32) {
+			player.y = 320 - 32;
+		}
+		
+	}
+	
+	public Texture getTexture(){
+		return texture;
+	}
+	
+	public SpriteBatch getBatch(){
+		return batch;
+	}
+	
+	public void render(){
+		batch.begin();
+		batch.draw(texture, player.x, player.y);
+		batch.end();
+		
+		playerCamera.update();
+	}
+	
+	public void dispose(){
+		texture.dispose();
+		batch.dispose();
+	}
+	
+	public OrthographicCamera getCamera(){
+		return playerCamera;
+	}
+}
