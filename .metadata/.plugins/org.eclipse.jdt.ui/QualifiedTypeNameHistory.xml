@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.OrthographicCamera"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.maps.tiled.TiledMapTileLayer"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.maps.MapObject"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.maps.MapObjects"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.glutils.ShapeRenderer"/>
+<fullyQualifiedTypeName name="com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType"/>
+</qualifiedTypeNameHistroy>
