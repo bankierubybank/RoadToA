@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="33">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="55">
  <tileset firstgid="1" name="basictiles" tilewidth="16" tileheight="16" tilecount="120" columns="8">
   <image source="basictiles.png" width="128" height="240"/>
-  <tile id="30">
-   <properties>
-    <property name="blocked" type="bool" value="true"/>
-   </properties>
-  </tile>
  </tileset>
  <layer name="Ground" width="20" height="20">
   <data encoding="csv">
@@ -50,10 +45,10 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,31,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,31,31,0,0,0,0,31,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,31,0,0,0,31,0,0,0,0,0,0,0,0
+31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31
 </data>
  </layer>
  <objectgroup name="obj">
@@ -69,11 +64,11 @@
   <object id="22" x="224" y="16" width="16" height="16"/>
   <object id="23" x="224" y="32" width="16" height="16"/>
   <object id="24" x="192" y="288" width="16" height="16"/>
-  <object id="25" x="176" y="304" width="16" height="16"/>
   <object id="26" x="112" y="288" width="16" height="16"/>
-  <object id="27" x="112" y="304" width="16" height="16"/>
   <object id="28" x="96" y="288" width="16" height="16"/>
   <object id="29" x="48" y="96" width="16" height="16"/>
   <object id="30" x="16" y="128" width="16" height="16"/>
+  <object id="53" x="0" y="304" width="320" height="16"/>
+  <object id="54" x="144" y="256" width="16" height="16"/>
  </objectgroup>
 </map>

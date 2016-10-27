@@ -3,84 +3,39 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 
-public class Character {
-	
-	private Texture texture;
-	private Rectangle player;
-	
-	private OrthographicCamera playerCamera;
-
-	private SpriteBatch batch;
-	
-	float rangeX, rangeY;
+public class Character extends Sprite{
+	public World world;
+	public Body b2body;
 	
 	//Constructor
-	public Character(){
-		texture = new Texture(Gdx.files.internal("player32.png"));
-		player = new Rectangle();
-		player.x = 0;
-		player.y = 0;
-		player.width = 32;
-		player.height = 32;
+	public Character(World world){
+		this.world = world;
+		defineCharacter();
+	}
+	
+	public void defineCharacter(){
+		BodyDef bdef = new BodyDef();
+		bdef.position.set(32 / MyGame.PPM, 32 / MyGame.PPM);
+		bdef.type = BodyDef.BodyType.DynamicBody;
+		b2body = world.createBody(bdef);
 		
-		batch = new SpriteBatch();
-		playerCamera = new OrthographicCamera();
-		playerCamera.setToOrtho(false, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+		FixtureDef fdef = new FixtureDef();
+		CircleShape shape = new CircleShape();
+		shape.setRadius(5 / MyGame.PPM);
+		
+		fdef.shape = shape;
+		b2body.createFixture(fdef);
+	}
 
-	}
-	
-	public float getX(){
-		return player.x;
-	}
-	
-	public float getY(){
-		return player.y;
-	}
-	
-	public void move(float x, float y){
-		player.x += x;
-		player.y += y;
-		playerCamera.translate(x, y);
-		if (player.x < 0) {
-			player.x = 0;
-		}
-		if (player.x > 320 - 32) {
-			player.x = 320 - 32;
-		}
-		if (player.y < 0) {
-			player.y = 0;
-		}
-		if (player.y > 320 - 32) {
-			player.y = 320 - 32;
-		}
-		
-	}
-	
-	public Texture getTexture(){
-		return texture;
-	}
-	
-	public SpriteBatch getBatch(){
-		return batch;
-	}
-	
-	public void render(){
-		batch.begin();
-		batch.draw(texture, player.x, player.y);
-		batch.end();
-		
-		playerCamera.update();
-	}
-	
-	public void dispose(){
-		texture.dispose();
-		batch.dispose();
-	}
-	
-	public OrthographicCamera getCamera(){
-		return playerCamera;
-	}
+
 }
