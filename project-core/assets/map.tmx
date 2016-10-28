@@ -27,7 +27,7 @@
 12,12,65,65,65,12,12,12,12,12,12,12,12,12,12,12,65,12,12,12
 </data>
  </layer>
- <layer name="Obs" width="20" height="20">
+ <layer name="Objects" width="20" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,31,0,31,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,31,0,31,0,0,0,0,0,
@@ -51,7 +51,7 @@
 31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31
 </data>
  </layer>
- <objectgroup name="obj">
+ <objectgroup name="trees">
   <properties>
    <property name="blocked" type="bool" value="true"/>
   </properties>

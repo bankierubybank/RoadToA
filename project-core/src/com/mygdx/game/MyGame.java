@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import Screens.MainMenuScreen;
+
 public class MyGame extends Game{
 	
 	public static final int V_WIDTH = 320;
